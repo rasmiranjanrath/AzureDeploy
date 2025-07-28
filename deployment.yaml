@@ -17,3 +17,15 @@ spec:
         image: testdeploy.azurecr.io/testdeploy:latest
         ports:
         - containerPort: 8080
+apiVersion: v1
+kind: Service
+metadata:
+  name: testdeploy-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: testdeploy
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
